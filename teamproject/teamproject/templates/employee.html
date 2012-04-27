@@ -5,6 +5,8 @@
 {% block content %}
 <h4>Выбор сотрудника:</h4>
 <ul>
-{{ employee_list|safe }}
+	{% for employee in employee_list %}
+    <li><a href="/employee/{{ employee.id }}">{{ employee.name }}</a></li>
+	{% endfor %}
 </ul>
 {% endblock %}

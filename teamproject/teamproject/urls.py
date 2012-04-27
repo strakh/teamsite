@@ -9,9 +9,9 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 	(r'^admin/', include(admin.site.urls)),
-	(r'^main/',main),
+	url(r'^main/',main, name='teamproject_main'),
 	(r'^employee/$',employee),
-	(r'^employee/(\d{1,2})',employee_one),
+	url(r'^employee/(\d{1,2})',employee_one, name='teamproject_employee_view'),
 	(r'^projects/',projects),
 	(r'^article/',article),
     # url(r'^$', 'teamproject.views.home', name='home'),

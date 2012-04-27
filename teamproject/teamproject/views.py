@@ -7,13 +7,10 @@ def main(request):
 
 def employee(request):
     try:
-        e_list = ''
         values = Employee.objects.order_by('name')[0:2]
-        for k in values:
-           e_list = e_list + str('<li><a href="/employee/%s">%s %s</a></li>' % (str(k.id).lower(), k.name, k.specialization))
     except Employee.DoesNotExist:
-        e_list = "No employees"
-    return render_to_response('employee.html',{'employee_list': e_list })
+        e_list = "No employees" 
+    return render_to_response('employee.html',{'employee_list': values })
 
 def employee_one(request, offset):
     try:
