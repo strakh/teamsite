@@ -1,0 +1,10 @@
+{% extends "main.html" %}
+
+{% block title %}Наши работники{% endblock %}
+
+{% block content %}
+<h4>Выбор сотрудника:</h4>
+<ul>
+{{ employee_list|safe }}
+</ul>
+{% endblock %}

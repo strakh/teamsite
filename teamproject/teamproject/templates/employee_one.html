@@ -1,0 +1,25 @@
+{% extends "employee.html" %}
+
+{% block title %}{{ name }}{% endblock %}
+
+{% block content %}
+
+   <table width="100%" border="0" cellspacing="0" cellpadding="4">
+    <tr bgcolor="#eee">
+		<td><img class="emp_img" src={{ url }} /></td>
+		<td>
+				<h4>{{ name }}</h4>
+				<h4>{{ spec }}</h4>
+				{{ url }}
+		</td>
+		
+	</tr>
+	</table>
+	<table bgcolor="#ccc" width="100%" border="0" cellspacing="0" cellpadding="4">
+    <tr>
+		<td>
+			{{ info }}
+		</td>
+	</tr>
+	</table>
+{% endblock %}
