@@ -1,0 +1,4 @@
+teamsite
+========
+
+Django team site
