@@ -3,8 +3,13 @@
 {% block title %}Наши работники{% endblock %}
 
 {% block content %}
-<h4>Выбор сотрудника:</h4>
+<h4>Проекты:</h4>
+<ul>
+	{% for project in project_list %}
+		<li><a href="{{ project.url_address }}">{{ project.name }}</a> 
+		</li>
+</ul>		
+	{% endfor %}
 
-{{ employee_list }}
 
 {% endblock %}

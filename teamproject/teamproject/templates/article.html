@@ -3,8 +3,20 @@
 {% block title %}Наши работники{% endblock %}
 
 {% block content %}
-<h4>Выбор сотрудника:</h4>
+<h4>Cтатьи:</h4>
+{% for article in article_list %}
+    <div style = "background:#eee;padding:5px;margin:2px" >
+	<p>
+		<h2 style = "color: red">{{ article.title }}</h2>
+		<small>Autor: {{ article.autor.name }}</small>	
+		<div>	
+			{{ article.text }}
+		</div>
+	</p>
+	</div>
+	
+{% endfor %}
 
-{article_list}
+{{ e_list }}
 
 {% endblock %}

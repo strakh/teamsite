@@ -9,11 +9,11 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 	(r'^admin/', include(admin.site.urls)),
-	url(r'^main/',main, name='teamproject_main'),
-	(r'^employee/$',employee),
+	url(r'^main/$',main, name='teamproject_main'),
+	url(r'^employee/$',employee, name='teamproject_employee'),
 	url(r'^employee/(\d{1,2})',employee_one, name='teamproject_employee_view'),
-	(r'^projects/',projects),
-	(r'^article/',article),
+	url(r'^projects/$',projects, name='teamproject_projects'),
+	url(r'^article/$',article, name='teamproject_article'),
     # url(r'^$', 'teamproject.views.home', name='home'),
     # url(r'^teamproject/', include('teamproject.foo.urls')),
 
