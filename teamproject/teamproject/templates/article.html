@@ -1,5 +1,5 @@
 {% extends "main.html" %}
-
+{% comment %}TODO: Please read about i18n and 'trans' template tag and make English default{% endcomment %}
 {% block title %}Наши работники{% endblock %}
 
 {% block content %}
@@ -8,7 +8,7 @@
     <div style = "background:#eee;padding:5px;margin:2px" >
 	<p>
 		<h2 style = "color: red">{{ article.title }}</h2>
-		<small>Autor: {{ article.autor.name }}</small>	
+		<small>Author: {{ article.autor.name }}</small>	
 		<div>	
 			{{ article.text }}
 		</div>

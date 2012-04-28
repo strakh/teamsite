@@ -3,12 +3,10 @@ from django.contrib import admin
 from teamproject.views import main, employee, projects, article, employee_one
 
 admin.autodiscover()
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
 
 urlpatterns = patterns('',
 	(r'^admin/', include(admin.site.urls)),
+	#TODO: make mail page root
 	url(r'^main/$',main, name='teamproject_main'),
 	url(r'^employee/$',employee, name='teamproject_employee'),
 	url(r'^employee/(\d{1,2})',employee_one, name='teamproject_employee_view'),

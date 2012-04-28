@@ -6,6 +6,7 @@
 <h4>Выбор сотрудника:</h4>
 <ul>
 	{% for employee in employee_list %}
+    {% comment %}TODO: Switch to name urls here too{% endcomment %}
     <li><a href="/employee/{{ employee.id }}">{{ employee.name }}</a></li>
 	{% endfor %}
 </ul>
