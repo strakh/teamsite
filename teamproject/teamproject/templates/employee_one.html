@@ -6,10 +6,10 @@
 
    <table width="100%" border="0" cellspacing="0" cellpadding="4">
     <tr bgcolor="#eee">
-		<td><img class="emp_img" src={{ url }} /></td>
+		<td><img src={{ url }}/></td>
 		<td>
-				<h4>{{ name }}</h4>
-				<h4>{{ spec }}</h4>
+				<h4>{{ employee.name }}</h4>
+				<h4>{{ employee.position_in_team }}</h4>
 				{{ url }}
 		</td>
 		
@@ -18,7 +18,7 @@
 	<table bgcolor="#ccc" width="100%" border="0" cellspacing="0" cellpadding="4">
     <tr>
 		<td>
-			{{ info }}
+			{{ employee.info }}
 		</td>
 	</tr>
 	</table>

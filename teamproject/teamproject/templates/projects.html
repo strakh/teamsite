@@ -6,7 +6,12 @@
 <h4>Проекты:</h4>
 <ul>
 	{% for project in project_list %}
-		<li><a href="{{ project.url_address }}">{{ project.name }}</a> 
+		<li><table>
+				<tr><td><img src={{ url }} /></td></tr>
+				<tr><td>
+					<a href="{{ project.url_address }}">{{ project.name }}</a> 
+				</td></tr>
+			</table>
 		</li>
 </ul>		
 	{% endfor %}
