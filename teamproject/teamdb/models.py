@@ -3,20 +3,22 @@ from django.contrib.auth.models import User
 import os.path
 
 #TODO: What about base model for created_by/created_at as we discussed?
-#class Base(models.Model):
-#	created_by = models.CharField(max_length=30)
-#	created_at = models.DateField(auto_now_add = True)
-#	modified_by = models.CharField(max_length=30)
-#	modified_at = models.DateField(auto_now = True)
-
+class Base(models.Model):
+    created_by = models.CharField(max_length=30, blank = True, null = True)
+    created_at = models.DateField(auto_now_add = True, blank = True, null = True)
+    modified_by = models.CharField(max_length=30, blank = True, null = True)
+    modified_at = models.DateField(auto_now = True, blank = True, null = True)
 	
+    class Meta:
+        abstract = True
+
 #(SOLVED)TODO: class name should be singlular
-class Image(models.Model):    
+class Image(Base):    
     title = models.CharField(max_length=60)
     #(SOLVED)TODO: ImageField is better here. 
     url = models.ImageField(upload_to=os.path.join(os.path.dirname(__file__),'img').replace('\\','/'), blank = True, null = True)
 
-class Employee(models.Model):
+class Employee(Base):
     name = models.CharField(max_length=30)
     #(SOLVED)TODO: Not sure we really need team member's address here, 
     # but we really need more contact info like skype or jabber
@@ -45,7 +47,7 @@ class Employee(models.Model):
     def __unicode__(self):
          return u'Employee %s' % self.name
 
-class Projects(models.Model):
+class Projects(Base):
     name = models.CharField(max_length=30)
     url_address = models.URLField()
     #(SOLVED)TODO: TextField?
@@ -62,7 +64,7 @@ class Projects(models.Model):
     def __unicode__(self):
          return u'Employee %s' % self.name
 
-class Article(models.Model):
+class Article(Base):
     title = models.CharField(max_length=60)
     date = models.DateField(auto_now = True)
     #(SOLVED)TODO: max value length for char field is 255
@@ -73,7 +75,7 @@ class Article(models.Model):
     img = models.OneToOneField(Image, related_name = 'article', blank = True, null = True)
 
 """    
-class Price(models.Model):
+class Price(Base):
     name = models.CharField(max_length=30)
     price = models.CharField(max_length=10)
 """    
