@@ -3,10 +3,10 @@ from django.contrib.auth.models import User
 import os.path
 
 class Base(models.Model):
-    #TODO: How are you going to get this user from db? 
-    created_by = models.CharField(max_length=30, blank = True, null = True)
+    #(SOLVED)TODO: How are you going to get this user from db? 
+    created_by = models.ForeignKey(User, related_name = '%(class)s_relate', blank = True, null = True)
     created_at = models.DateField(auto_now_add = True, blank = True, null = True)
-    modified_by = models.CharField(max_length=30, blank = True, null = True)
+    modified_by = models.ForeignKey(User, related_name = '%(class)s_related', blank = True, null = True)
     modified_at = models.DateField(auto_now = True, blank = True, null = True)
 	
     class Meta:
@@ -46,17 +46,17 @@ class Projects(Base):
     screenshots = models.ManyToManyField(Image, related_name = 'projects')
 
     def __unicode__(self):
-        #TODO: fix incorrect string
-        return u'Employee %s' % self.name
+        #(SOLVED)TODO: fix incorrect string
+        return u'Project %s' % self.name
 
 class Article(Base):
     title = models.CharField(max_length=60)
     date = models.DateField(auto_now = True)
     text = models.TextField()
-    #TODO: What if the same user writes several articles? your fix is not correct
-    author = models.OneToOneField(Employee, related_name = 'article', blank = True, null = True)
-    #TODO: fields of this type should be plural. your fix is not correct
-    img = models.OneToOneField(Image, related_name = 'article', blank = True, null = True)
+    #(SOLVED)TODO: What if the same user writes several articles? your fix is not correct
+    author = models.ForeignKey(Employee, related_name = 'article', blank = True, null = True)
+    #(SOLVED)TODO: fields of this type should be plural. your fix is not correct
+    img = models.ManyToManyField(Image, related_name = 'article', blank = True, null = True)
 
 """    
 class Price(Base):
