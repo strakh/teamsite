@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 import os.path
 
 class Base(models.Model):
-    #(SOLVED)TODO: How are you going to get this user from db? 
+    #TODO: i think we don't need this field to be nullable, they always must be filled.
     created_by = models.ForeignKey(User, related_name = '%(class)s_relate', blank = True, null = True)
     created_at = models.DateField(auto_now_add = True, blank = True, null = True)
     modified_by = models.ForeignKey(User, related_name = '%(class)s_related', blank = True, null = True)
@@ -46,16 +46,14 @@ class Projects(Base):
     screenshots = models.ManyToManyField(Image, related_name = 'projects')
 
     def __unicode__(self):
-        #(SOLVED)TODO: fix incorrect string
         return u'Project %s' % self.name
 
 class Article(Base):
     title = models.CharField(max_length=60)
     date = models.DateField(auto_now = True)
     text = models.TextField()
-    #(SOLVED)TODO: What if the same user writes several articles? your fix is not correct
     author = models.ForeignKey(Employee, related_name = 'article', blank = True, null = True)
-    #(SOLVED)TODO: fields of this type should be plural. your fix is not correct
+    #TODO: rename this to 'images' (should be plural) and related name to 'artiles' (should be plural too)
     img = models.ManyToManyField(Image, related_name = 'article', blank = True, null = True)
 
 """    

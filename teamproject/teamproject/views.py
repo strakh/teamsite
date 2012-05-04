@@ -1,5 +1,3 @@
-#TODO: learn the difference between render and render_to_response functions
-# and make a proper decision
 from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
 from teamdb.models import Employee, Article, Projects
@@ -14,6 +12,7 @@ def employee(request):
     return render(request,'employee.html',{'employee_list': values })
 
 def article(request):
+    #TODO: remove limits or use paginator
     values = Article.objects.order_by('title')[0:4]
     return render(request,'article.html',{'article_list': values })
     
@@ -36,6 +35,7 @@ def projects(request):
         values = Projects.objects.order_by('name')
         url =  values.img.url
     except Projects.DoesNotExist:
+        #TODO: you still don't use this variable anywhere
         e_list = "No projects"
     except AttributeError:
 		url = os.path.join(os.path.dirname(__file__),'img/nothing.png').replace('\\','/')
