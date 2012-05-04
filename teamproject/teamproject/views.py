@@ -1,48 +1,46 @@
 #TODO: learn the difference between render and render_to_response functions
 # and make a proper decision
-from django.shortcuts import render_to_response
+from django.shortcuts import render
+from django.core.exceptions import ObjectDoesNotExist
 from teamdb.models import Employee, Article, Projects
+from django.http import Http404
 import os.path
 
 def main(request):
-    return render_to_response('main.html',)
+    return render(request,'main.html',)
 
 def employee(request):
     values = Employee.objects.order_by('name')
-    return render_to_response('employee.html',{'employee_list': values })
+    return render(request,'employee.html',{'employee_list': values })
 
 def article(request):
     values = Article.objects.order_by('title')[0:4]
-    return render_to_response('article.html',{'article_list': values })
+    return render(request,'article.html',{'article_list': values })
     
 def employee_one(request, offset):
     try:
         offset = int(offset)
-    except ValueError:
-        raise Http404()
-    try:
         value = Employee.objects.get(id = offset)
-    #TODO: incorrect exception class. Maybe combine with previous try/except?
+        url =  value.img.url
     except ValueError:
         raise Http404()
-    try:
-        url =  value.img.url
+    except Employee.DoesNotExist:
+        raise Http404()        
     except AttributeError:
 		url = os.path.join(os.path.dirname(__file__),'img/nobody.png').replace('\\','/')
-    return render_to_response('employee_one.html',{'employee': value, 'url': url })
+    return render(request,'employee_one.html',{'employee': value, 'url': url })
 
 def projects(request):
-    #TODO: the same bug with exception as earlier
+    #(SOLVED)TODO: the same bug with exception as earlier
     try:
         values = Projects.objects.order_by('name')
-    except Projects.DoesNotExist:
-        e_list = "No projects" 
-    try:
         url =  values.img.url
+    except Projects.DoesNotExist:
+        e_list = "No projects"
     except AttributeError:
 		url = os.path.join(os.path.dirname(__file__),'img/nothing.png').replace('\\','/')
-    return render_to_response('projects.html',{'project_list': values,'url': url })
+    return render(request,'projects.html',{'project_list': values,'url': url })
 
 #def article(request):
-#    return render_to_response('article.html',)
+#    return render(request,'article.html',)
 
