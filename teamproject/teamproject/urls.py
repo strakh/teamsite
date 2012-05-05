@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from teamproject.views import main, employee, projects, article, employee_one
+from teamproject.views import main, employee, projects, article, employee_one, search
 
 admin.autodiscover()
 
@@ -12,6 +12,8 @@ urlpatterns = patterns('',
 	url(r'^employee/(\d{1,2})',employee_one, name='teamproject_employee_view'),
 	url(r'^projects/$',projects, name='teamproject_projects'),
 	url(r'^article/$',article, name='teamproject_article'),
+	#url(r'^search-form/$', search_form, nameen/employee/='teamproject_search-form'),
+    url(r'^search/$', search, name='teamproject_search'),
     # url(r'^$', 'teamproject.views.home', name='home'),
     # url(r'^teamproject/', include('teamproject.foo.urls')),
 

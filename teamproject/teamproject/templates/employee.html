@@ -3,11 +3,17 @@
 {% block title %}Наши работники{% endblock %}
 
 {% block content %}
-<h4>Выбор сотрудника:</h4>
-<ul>
-	{% for employee in employee_list %}
-    {% comment %}(SOLVED)TODO: Switch to name urls here too{% endcomment %}
-    <li><a href="{% url teamproject_employee_view employee.id %}">{{ employee.name }}</a></li>
-	{% endfor %}
-</ul>
+<form action="/search/" method="get">
+        <input type="text" name="q">
+        <input type="submit" value="Search">
+</form>
+	{% block employee %}
+		<h4>Выбор сотрудника:</h4>
+		<ul>
+			{% for employee in employee_list %}
+			{% comment %}(SOLVED)TODO: Switch to name urls here too{% endcomment %}
+			<li><a href="{% url teamproject_employee_view employee.id %}">{{ employee.name }}</a></li>
+			{% endfor %}
+		</ul>
+	{% endblock %}
 {% endblock %}

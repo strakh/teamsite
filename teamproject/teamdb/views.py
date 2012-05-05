@@ -1,1 +1,0 @@
-#TODO: maybe it's better to move view functions here? 
