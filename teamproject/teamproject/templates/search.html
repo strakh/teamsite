@@ -1,0 +1,15 @@
+{% extends "employee.html" %}
+<p>You searched for: <strong>{{ query }}</strong></p>
+
+{% block employee %}
+	{% if emp %}
+		<p>Found {{ emp|length }} employee{{ emp|pluralize }}.</p>
+		<ul>
+			{% for em in emp %}
+			<li>{{ em.name }}</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>No employees matched your search criteria.</p>
+	{% endif %}
+{% endblock %}
