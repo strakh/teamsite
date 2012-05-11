@@ -6,8 +6,9 @@
 
    <table width="100%" border="0" cellspacing="0" cellpadding="4">
     <tr bgcolor="#eee">
-		<td><img src={{ url }}/></td>
+		<td><img src="{{ MEDIA_URL }}{{ url }} " /></td>
 		<td>
+				{{ MR }}<br>
 				<h4>{{ employee.name }}</h4>
 				<h4>{{ employee.position_in_team }}</h4>
 				{{ url }}

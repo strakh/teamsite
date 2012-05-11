@@ -3,6 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from teamdb.models import Employee, Article, Projects
 from django.http import Http404
 from teamproject.forms import Email
+from django.conf import settings
 import os.path
 
 def main(request):
@@ -34,25 +35,28 @@ def employee_one(request, offset):
 			offset = int(offset)
 			value = Employee.objects.get(id = offset)
 			url =  value.img.url
+			
+			url = str(url).replace(settings.MEDIA_ROOT,'')
         except ValueError:
 		    raise Http404()
         except Employee.DoesNotExist:
 			raise Http404()        
         except AttributeError:
-			url = os.path.join(os.path.dirname(__file__),'img/nobody.png').replace('\\','/')
+			url = 'img/nobody.png'
         form = Email()
-    return render(request,'employee_one.html',{'employee': value, 'url': url, 'form': form })
+    return render(request,'employee_one.html',{'employee': value, 'url': url, 'form': form,'MR': str(settings.MEDIA_ROOT) })
 
 def projects(request):
     #(SOLVED)TODO: the same bug with exception as earlier
     try:
         values = Projects.objects.order_by('name')
         url =  values.img.url
+        url.replace(settings.MEDIA_ROOT,'')
     except Projects.DoesNotExist:
         #TODO: you still don't use this variable anywhere
         e_list = "No projects"
     except AttributeError:
-		url = os.path.join(os.path.dirname(__file__),'img/nothing.png').replace('\\','/')
+		url = 'img/nothing.png'
     return render(request,'projects.html',{'project_list': values,'url': url })
 
 def search(request):

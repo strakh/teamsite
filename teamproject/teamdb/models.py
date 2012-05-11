@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import os.path
+from django.conf import settings
 
 class Base(models.Model):
     #TODO: i think we don't need this field to be nullable, they always must be filled.
@@ -14,7 +15,7 @@ class Base(models.Model):
 
 class Image(Base):    
     title = models.CharField(max_length=60)
-    url = models.ImageField(upload_to=os.path.join(os.path.dirname(__file__),'img').replace('\\','/'), blank = True, null = True)
+    url = models.ImageField(upload_to= u'%s/img' % settings.MEDIA_ROOT, blank = True, null = True)
 
 class Employee(Base):
     name = models.CharField(max_length=30)

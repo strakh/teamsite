@@ -4,6 +4,9 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+	{% load static %}
+	{% get_static_prefix as STATIC_URL %}
+	<img src="{{ STATIC_URL }}logo.png" />
    <table width="100%" border="0" cellspacing="0" cellpadding="4">
     <tr bgcolor="#aaa">
 		<td><a href="{% url teamproject_main %}">Главная</a></td>
