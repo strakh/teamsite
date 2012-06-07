@@ -2,20 +2,21 @@
 <html lang="en">
 <head>
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css"/>
 </head>
 <body>
 	{% load static %}
 	{% get_static_prefix as STATIC_URL %}
-	<img src="{{ STATIC_URL }}logo.png" />
+	<img src="{{ MEDIA_URL }}logo.png" />
    <table width="100%" border="0" cellspacing="0" cellpadding="4">
-    <tr bgcolor="#aaa">
-		<td><a href="{% url teamproject_main %}">Главная</a></td>
-		<td><a href="{% url teamproject_employee %}">Работники</a></td>
-		<td><a href="{% url teamproject_article %}">Статьи</a></td>
-		<td><a href="{% url teamproject_projects %}">Наши проекты</a></td>
+    <tr class = "top_link">		
+		<td><a class = "top_link" href="{% url teamproject_main %}">Главная</a></td>
+		<td><a class = "top_link" href="{% url teamproject_employee %}">Работники</a></td>
+		<td><a class = "top_link" href="{% url teamproject_article %}">Статьи</a></td>
+		<td><a class = "top_link" href="{% url teamproject_projects %}">Наши проекты</a></td>
 	</tr>
 	</table>
-	<table bgcolor="#ccc" width="100%" border="0" cellspacing="0" cellpadding="4">
+	<table  width="100%" border="0" cellspacing="0" cellpadding="4">
     <tr >
 		<td>
 			{% block content %}

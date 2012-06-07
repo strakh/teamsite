@@ -1,0 +1,29 @@
+
+body{
+	background:#ebebeb;
+	font-family:"Arial" , serif ;
+	
+}
+
+a{
+	text-decoration: none;
+	
+}
+a.top_link{
+	color:#000000;
+	
+}
+
+a.top_link:hover{
+	background:#4d4d4d ;
+	color: white;
+	
+}
+
+tr.top_link{
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	border :1px solid  #1a1a1a;	
+	
+}
+
